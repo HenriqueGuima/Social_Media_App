@@ -12,14 +12,14 @@ function App() {
   return (
     <React.Fragment>
       <Router>
-        {/* <Container> */}
-        <Menu />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-        </Routes>
-        {/* </Container> */}
+        <Container>
+          <Menu />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+          </Routes>
+        </Container>
       </Router>
     </React.Fragment>
   );
