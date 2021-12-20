@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Card, Icon, Image, Label } from "semantic-ui-react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth";
+import LikeButton from "./LikeButton";
 
 export default function PostCard({
   post: {
@@ -15,12 +17,11 @@ export default function PostCard({
     comments,
   },
 }) {
+  const { user } = useContext(AuthContext);
   function likePost() {
     console.log("Like was clicked");
   }
-  function commentPost() {
-    console.log("Comment was clicked");
-  }
+
   return (
     <React.Fragment>
       <Card fluid>
@@ -39,22 +40,35 @@ export default function PostCard({
           <Card.Description>{body}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Button as="div" labelPosition="right" onClick={likePost}>
-            <Button color="teal">
-              <Icon name="arrow up" />
+          <LikeButton user={user} post={{ id, likes, likeCount }} />
+
+          <Button
+            as="div"
+            labelPosition="right"
+            as={Link}
+            to={`/posts/${id}`}
+            // onClick={commentPost}
+          >
+            <Button>
+              <Icon name="comments" color="blue" />
             </Button>
-            <Label as="a" basic color="teal" pointing="left">
-              {likeCount}
-            </Label>
-          </Button>
-          <Button as="div" labelPosition="right" onClick={commentPost}>
-            <Button color="blue">
-              <Icon name="comments" />
-            </Button>
-            <Label as="a" basic color="teal" pointing="left">
+            <Label as="a" basic color="blue" pointing="left">
               {commentCount}
             </Label>
           </Button>
+          {user && user.username === username && (
+            <Button
+              as="div"
+              floated="right"
+              onClick={() => console.log("Delete Post")}
+            >
+              <Icon
+                name="trash alternate outline "
+                color="red"
+                style={{ margin: 0 }}
+              />
+            </Button>
+          )}
         </Card.Content>
       </Card>
     </React.Fragment>
