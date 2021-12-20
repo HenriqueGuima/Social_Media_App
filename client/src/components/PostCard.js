@@ -30,8 +30,10 @@ export default function PostCard({
             size="mini"
             src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
           />
-          <Card.Header>{username}</Card.Header>
-          <Card.Meta as={Link} to={`/posts/${id}`}>
+          <Card.Header as={Link} to={`/${username}`}>
+            {username}
+          </Card.Header>
+          <Card.Meta as={Link} to={`/${username}/${id}`}>
             {moment(createdAt).fromNow(true)}
           </Card.Meta>
           <Card.Description>{body}</Card.Description>
