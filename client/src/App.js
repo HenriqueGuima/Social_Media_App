@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Menu from "./components/Menu";
 import { Container } from "semantic-ui-react";
 import { AuthProvider } from "./context/auth";
+import SinglePost from "./pages/SinglePost";
 
 function App() {
   return (
@@ -17,11 +18,10 @@ function App() {
           <Container>
             <Menu />
             <Routes>
-              {/* TO DO */}
-              {/* RETRY PRIVATE ROUTES */}
               <Route path="/" element={<Home />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
+              <Route path="/posts/:postId" element={<SinglePost />}></Route>
             </Routes>
           </Container>
         </Router>
